@@ -31,7 +31,7 @@ defaults
   mode http
   timeout client 50000s
   timeout connect 5000s
-  timeout server 5000s
+  timeout server 50000s
   timeout http-request 5000s
 
 frontend myrobert-tech-frontend
