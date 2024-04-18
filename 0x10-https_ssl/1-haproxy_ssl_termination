@@ -41,7 +41,7 @@ frontend myrobert.tech-frontend
         default_backend myrobert.tech-backend
 
 frontend myrobert.tech-frontend-https
-        bind *:443 ssl crt /etc/haproxy/certs/clickviral.tech.pem
+        bind *:443 ssl crt /etc/haproxy/certs/www.myrobert.tech.pem
         http-request set-header X-Forwarded-Proto https
         default_backend myrobert.tech-backend
 
