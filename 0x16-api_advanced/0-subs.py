@@ -1,22 +1,15 @@
 #!/usr/bin/python3
-"""Script that returns the numbers of
-subscribers of a subreddit passed to it"""
-
+"""request numbers of subscribers on reddit"""
 import requests
 
 
 def number_of_subscribers(subreddit):
-    """Function that returns the numbers of
-    subscribers of a subreddit passed to it"""
+    request = requests.get("https://www.reddit.com/r/{}/about.json"
+                           .format(subreddit),
+                           headers={"User-Agent": "holberton"},
+                           allow_redirects=False)
 
-    apiUrl = "https://reddit.com/r/{}/about.json".format(subreddit)
-    userAgent = "Mozilla/5.0"
+    if request.status_code == 200:
+        return request.json()["data"]["subscribers"]
 
-    response = requests.get(apiUrl, headers={"user-agent": userAgent})
-    if not response:
-        return 0
-    retValue = response.json().get('data').get('subscribers')
-    if retValue:
-        return retValue
-    else:
-        return 0
+    return 0
