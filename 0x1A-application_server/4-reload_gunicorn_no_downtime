@@ -1,14 +1,4 @@
 #!/usr/bin/env bash
-
-# Gracefully reloads Gunicorn
-# Find the PID of the master Gunicorn process
-pid=$(pgrep -f gunicorn)
-
-# Send the HUP signal to the master Gunicorn process
-kill -HUP "$pid"
-
-# Wait for a moment for the new worker processes to start
-sleep 2
-
-# Verify that the new worker processes are up and running
-pgrep -af gunicorn
+# Gracefully reloads Gunicorn.
+#shellcheck disable=SC2009
+ps aux | grep gunicorn | awk '{ print $2 }' | xargs kill -HUP
