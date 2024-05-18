@@ -2,5 +2,15 @@
 
 #Gracefully reloads Gunicorn
 
-pgrep unicorn | xargs kill -HUP
 
+# Get the PID of the Gunicorn process
+pid=$(ps aux | grep '[g]unicorn' | awk '{print $2}')
+
+# Check if the PID is not empty
+if [ -n "$pid" ]; then
+    # Send a HUP signal to gracefully restart Gunicorn
+    kill -HUP "$pid"
+    echo "Gunicorn restarted gracefully."
+else
+    echo "Gunicorn is not running."
+fi
