@@ -4,7 +4,7 @@
 
 
 # Get the PID of the Gunicorn process
-pid=$(ps aux | grep '[g]unicorn' | awk '{print $2}')
+pid=$(pgrep -f 'gunicorn')
 
 # Check if the PID is not empty
 if [ -n "$pid" ]; then
