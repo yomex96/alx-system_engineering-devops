@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
-# Gracefully reloads Gunicorn.
-#shellcheck disable=SC2009
-ps aux | grep gunicorn | awk '{ print $2 }' | xargs kill -HUP
+
+# Reload gunicorn with graceful way (HUB)
+
+pgrep gunicorn | xargs kill -HUP
+
+# pgrep gunicorn | xargs -I {} kill -HUP {}
